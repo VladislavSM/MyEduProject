@@ -15,6 +15,7 @@ class ItemsController extends Controller
     public $defaultAction = 'items';
 
     public function actionItems() {
+//        var_dump(Session::get('identity'),$_SESSION);die;
 
         $model = new Items();
         $params['items'] = $model->findItems();

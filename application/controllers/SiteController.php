@@ -27,7 +27,11 @@ class SiteController extends Controller
 
     public function actionLogin(){
 
-        if(isset($_SESSION['identity'])){
+//        $user = new User();
+//        var_dump($user->user);die;
+
+
+        if(Session::_get('identity') !== false){
 
             $this->goHome();
         }
@@ -36,15 +40,18 @@ class SiteController extends Controller
         $authPass = 'Введите пароль';
         $color = 'darkslategrey';
 
-        if (isset($_SESSION['loginError'])) {
+        if (Session::_get('loginError') !== false) {
 
-            $authLogin = $_SESSION['loginError']['login'];
-            $authPass = $_SESSION['loginError']['pass'];
+            $loginError = Session::_get('loginError');
+
+            $authLogin = $loginError['login'];
+            $authPass = $loginError['pass'];
             $color = 'darkred';
         }
 
         $model = new Login();
         $model->userLogin();
+
         $params['authLogin'] = $authLogin;
         $params['authPass'] = $authPass;
         $params['color'] = $color;

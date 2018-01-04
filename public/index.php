@@ -22,10 +22,8 @@
 
     require(__DIR__ . DS.'..'.DS.'core'.DS.'autoload.php');
 
-    session_save_path('..' . DS . 'session');
-    session_start();
 
-    $bootstrap = Bootstrap::getInstance();
+      $bootstrap = Bootstrap::getInstance();
 
 
 

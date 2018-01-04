@@ -12,7 +12,6 @@ require_once 'Route.php';
 class Dispatcher
 {
 
-//    private $errorController = 'Errors';
     /**
      * @param $controllerName
      * @throws Exception
@@ -35,7 +34,6 @@ class Dispatcher
                  header('HTTP/1.0 404 Not Found'); die;
             } else {
                 $result = new $origin(strtolower($origin));
-//                var_dump($result);die;
             }
             return $result;
         }

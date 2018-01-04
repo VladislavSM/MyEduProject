@@ -9,8 +9,8 @@
 class Login
 {
 
-public function userLogin()
-{
+    public function userLogin()
+    {
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $login = trim($_POST['login'],"/?;:,.!&%#@[]{}<>=~");
@@ -25,7 +25,6 @@ public function userLogin()
 
             $result = $this->findUser($users,$login,$pass);
 
-
 // execute query when working with the database;
 //            $getUser = $db->prepare(
 //                'SELECT
@@ -39,17 +38,16 @@ public function userLogin()
 
 //            $getUser->execute([$login,$pass]);
 //            $result = $getUser->fetch();
-//
-
 
             if (!empty($result)) {
-                $_SESSION['identity'] = $result['login'];
+                Session::_set('identity',$result['login']);
                 header('Location:/site/index');
             } else {
-                $_SESSION['loginError'] = [
+                Session::_set('loginError', [
                     'login' => '<p class="errorinp">Неврный логин</p>',
                     'pass' => '<p class="errorinp">Неврный пароль</p>'
-                ];
+                ]);
+
                 header('Location:/site/login');
             }
         }
@@ -58,8 +56,7 @@ public function userLogin()
 
     public function userLogout(){
 
-    unset($_SESSION['identity']);
-    unset($_SESSION['loginError']);
+        Session::close();
         header('Location:/site/index');
     }
 

@@ -35,7 +35,10 @@ class Bootstrap
 
 //
         if (method_exists($controller, $action)) {
-
+            $session = new Session();
+            $session->setSessionSavePath('../session');
+            $session->start();
+            $session->identitySession();
 
             ob_start();
             $controller->$action();
