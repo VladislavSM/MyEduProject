@@ -6,7 +6,7 @@
  * Date: 23.04.17
  * Time: 18:10
  */
-//namespace Mvc\Core;
+namespace core;
 
 class Response
 {

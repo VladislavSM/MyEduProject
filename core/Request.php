@@ -7,6 +7,8 @@
  * Time: 17:58
  */
 
+namespace core;
+
 class Request
 {
     /**

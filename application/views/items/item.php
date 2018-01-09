@@ -1,5 +1,7 @@
 
 <?php
+use core\Layout;
+
     Layout::$pageTitle = $item['title'];
 ?>
 

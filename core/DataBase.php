@@ -6,13 +6,12 @@
  * Date: 10.05.17
  * Time: 18:45
  */
-//namespace Mvc\Core;
-
-//use \Exception;
-//use \PDO;
+namespace core;
+use \Exception;
+use \PDO;
 class DataBase
 {
-    const DEFAULT_CONNECTION = 'mvc';
+    const DEFAULT_CONNECTION = '';
     public static $instance;
     protected $connectionName;
     protected $connection;

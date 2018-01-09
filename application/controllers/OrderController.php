@@ -7,7 +7,8 @@
  * Time: 15:23
  */
 
-
+//namespace application\controllers;
+use core\Controller;
 
 /** Processing orders will be implemented after connecting the training database.
  *The logic of implementation is similar to what I did in Yii-2 (given in the comments).

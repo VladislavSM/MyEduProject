@@ -6,6 +6,10 @@
  * Date: 03.01.18
  * Time: 11:16
  */
+namespace core;
+
+use Exception;
+
 class Session
 {
 
@@ -19,9 +23,6 @@ class Session
     }
 
     public function start(){
-        ini_set('session.cookie_httponly','On');
-        ini_set('session.gc_probability','90');
-        ini_set('session.gc_divisor','100');
         session_start();
 
     }
@@ -55,8 +56,8 @@ class Session
 
     public static function close(){
         unset($_SESSION);
+        setcookie('PHPSESSID',"",time()-3600,'/');
         session_destroy();
-        setcookie('PHPSESSID','',time()-3000);
     }
 
 }

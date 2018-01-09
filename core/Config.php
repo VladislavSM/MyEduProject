@@ -7,9 +7,9 @@
  * Time: 13:14
  */
 
-//namespace Mvc\Core;
+namespace core;
 
-//use \DirectoryIterator;
+use DirectoryIterator;
 
 class Config
 {

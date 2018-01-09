@@ -16,14 +16,15 @@
 //$serr = new SiteError();
 //$serr->siteErrors();
 
+use core\Bootstrap;
 
-    define('DS', DIRECTORY_SEPARATOR);
-    define('APP_PATH', '..' . DS . 'application' . DS);
+define('DS', DIRECTORY_SEPARATOR);
+define('APP_PATH', '..' . DS . 'application' . DS);
 
-    require(__DIR__ . DS.'..'.DS.'core'.DS.'autoload.php');
+require(__DIR__ . DS . '..' . DS . 'autoload.php');
 
 
-      $bootstrap = Bootstrap::getInstance();
+$bootstrap = Bootstrap::getInstance();
 
 
 

@@ -7,8 +7,11 @@
  * Time: 18:09
  */
 
-require_once 'Route.php';
+//require_once 'Route.php';
+namespace core;
 
+use Exception;
+use application\controllers\ErrorsController;
 class Dispatcher
 {
 
@@ -18,7 +21,6 @@ class Dispatcher
      * @return object
      */
     public function getController($controllerName) {
-
         if(empty($controllerName)) {
             throw new Exception('Can\'t dispatch empty controller name');
         } else {
@@ -26,14 +28,15 @@ class Dispatcher
             $origin = ucfirst($route->getOrigin($controllerName) ?: $controllerName);
             $origin = $origin.'Controller';
             $path = APP_PATH . 'controllers' . DS . $origin .'.php';
+            $nameSpace = 'application\controllers\\';
+            $className = $nameSpace.$origin;
 
-            if (!$this->isExist($origin, $path)) {
-                require_once '../application/controllers/ErrorsController.php';
-                $controller = new Errors('errors');
+            if (!$this->isExist($className, $path)) {
+                $controller = new ErrorsController('errors');
                 $controller->actionErrors();
                  header('HTTP/1.0 404 Not Found'); die;
             } else {
-                $result = new $origin(strtolower($origin));
+                $result = new $className(strtolower($origin));
             }
             return $result;
         }
@@ -60,11 +63,10 @@ class Dispatcher
         } else {
             require_once $path;
 
-            if(!class_exists($name)){
+            if(!class_exists($name,true)){
                 $result = false;
             }
         }
-
         return $result;
     }
 }

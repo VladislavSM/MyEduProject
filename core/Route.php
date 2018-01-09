@@ -6,9 +6,10 @@
  * Time: 17:40
  */
 
-//namespace Mvc\Core;
+namespace core;
 
-//use \Exception;
+use Exception;
+use core\Config;
 
 class Route {
 
@@ -20,8 +21,6 @@ class Route {
             $origin = false;
             $configs = Config::getInstance();
             $routes = $configs->get('routes');
-//            $routes = $routes['routes'];
-//            $routes = require APP_PATH . DS . 'configs' . DS . 'routes.php';
 
             if (array_key_exists($alias, $routes)) {
                 $origin = $routes[$alias];

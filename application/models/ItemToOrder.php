@@ -6,6 +6,9 @@
  * Date: 26.12.17
  * Time: 15:46
  */
+
+namespace application\models;
+
 class ItemToOrder
 //                 extends ActiveRecord
 

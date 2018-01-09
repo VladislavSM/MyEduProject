@@ -6,6 +6,10 @@
  * Date: 21.12.17
  * Time: 19:32
  */
+namespace core;
+
+use application\controllers\ErrorsController;
+
 class Bootstrap
 {
     protected static $instance;
@@ -31,24 +35,22 @@ class Bootstrap
         $dispatcher = new Dispatcher();
         $controller = $dispatcher->getController($controllerName);
         $action = $dispatcher->getAction($actionName, $controllerName);
-
-
-//
         if (method_exists($controller, $action)) {
             $session = new Session();
             $session->setSessionSavePath('../session');
-            $session->start();
-            $session->identitySession();
-
+            if(isset($_COOKIE['PHPSESSID'])){
+                $session->start();
+                $session->identitySession();
+            }
             ob_start();
             $controller->$action();
             $content = ob_get_contents();
             ob_end_clean();
             $layout = new Layout();
             $layout->compose($content);
+
         } else {
-            require_once '../application/controllers/ErrorsController.php';
-            $controller = new Errors('errors');
+            $controller = new ErrorsController('errors');
             $controller->actionErrors();
         }
 

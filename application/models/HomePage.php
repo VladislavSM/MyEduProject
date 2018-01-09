@@ -7,6 +7,9 @@
  * Time: 17:20
  */
 
+namespace application\models;
+
+
 class HomePage
 
 {

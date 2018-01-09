@@ -6,7 +6,7 @@
  * Date: 19.12.17
  * Time: 21:33
  */
-
+namespace core;
 
 class SiteError
 {

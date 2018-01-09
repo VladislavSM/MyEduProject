@@ -1,4 +1,7 @@
-
+<?php
+use core\Layout;
+use core\Session;
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -38,6 +41,7 @@
                 <a class="nav-link" href="/items/items">Каталог</a>
 
             <?php
+//            var_dump($_SESSION,Session::_get('identity'));die;
 //            var_dump(User::$username);die;
             if (Session::_get('identity') !== false){
                 $userName = Session::_get('identity');

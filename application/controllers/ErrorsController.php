@@ -6,21 +6,12 @@
  * Date: 03.05.17
  * Time: 14:48
  */
+namespace application\controllers;
 
-class Errors extends Controller
+use core\View;
+use core\Controller;
+class ErrorsController extends Controller
 {
-
-
-//    public function __construct($name) {
-//        $request = Request::getInstance();
-//        $actionName = 'errors';
-//        $this->dirName = $name;
-//        $this->actionName = $actionName;
-//        var_dump($actionName);
-//        $this->setTemplate();
-//        $this->init();
-//
-//    }
     public function actionErrors() {
         $params['title'] = 'Error 404 Not Found';
 
@@ -31,6 +22,5 @@ class Errors extends Controller
         $view = new View($this->template, $params);
         header("HTTP/1.0 404 Not Found");
         $view->render();
-
     }
 }

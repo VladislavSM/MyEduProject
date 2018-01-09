@@ -6,6 +6,8 @@
  * Date: 26.12.17
  * Time: 15:47
  */
+namespace application\models;
+
 class Order
 //          extends ActiveRecord
 {

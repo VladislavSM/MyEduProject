@@ -10,6 +10,7 @@
  * public $defaultAction = 'index'; is determined in this class Controller,
  * You can override yous public $defaulAction in in the desired controller.
  */
+namespace core;
 
 class Controller
 {
@@ -50,4 +51,5 @@ class Controller
 
         header('Location:/site/index');
     }
+
 }

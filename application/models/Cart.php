@@ -6,6 +6,9 @@
  * Date: 26.12.17
  * Time: 15:27
  */
+namespace application\models;
+
+
 class Cart
 //         extends ActiveRecord
 

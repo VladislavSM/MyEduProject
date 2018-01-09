@@ -1,5 +1,6 @@
 
 <?php
+use core\Layout;
 
      Layout::$pageTitle = 'Home Page';
 

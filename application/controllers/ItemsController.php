@@ -6,8 +6,12 @@
  * Date: 25.12.17
  * Time: 17:14
  */
+namespace application\controllers;
 
-require_once '../application/models/Items.php';
+use core\Controller;
+use application\models\Items;
+
+//require_once '../application/models/Items.php';
 
 
 class ItemsController extends Controller
@@ -15,8 +19,6 @@ class ItemsController extends Controller
     public $defaultAction = 'items';
 
     public function actionItems() {
-//        var_dump(Session::get('identity'),$_SESSION);die;
-
         $model = new Items();
         $params['items'] = $model->findItems();
 

@@ -6,6 +6,9 @@
  * Date: 25.12.17
  * Time: 17:15
  */
+namespace application\models;
+
+
 class Items
 {
 
