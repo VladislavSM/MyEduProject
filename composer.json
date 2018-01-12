@@ -1,0 +1,17 @@
+{
+    "name": "mvs/myeduproject",
+    "description": "Education framework",
+    "type": "project",
+    "authors": [
+        {
+            "name": "VladislavSM",
+            "email": "vlm96443@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+      "psr-4": {
+         "MVS\\MyEduProject\\": "\\"
+       }
+     }
+}

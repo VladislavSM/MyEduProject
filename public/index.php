@@ -16,12 +16,13 @@
 //$serr = new SiteError();
 //$serr->siteErrors();
 
-use core\Bootstrap;
+use MVS\MyEduProject\Core\Bootstrap;
 
 define('DS', DIRECTORY_SEPARATOR);
-define('APP_PATH', '..' . DS . 'application' . DS);
+define('APP_PATH', '..' . DS . 'Application' . DS);
 
-require(__DIR__ . DS . '..' . DS . 'autoload.php');
+//require(__DIR__ . DS . '..' . DS . 'autoload.php');
+require(__DIR__ . DS . '..' . DS . 'vendor' . DS . 'autoload.php');
 
 
 $bootstrap = Bootstrap::getInstance();
