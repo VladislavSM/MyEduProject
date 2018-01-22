@@ -18,8 +18,8 @@ use MVS\MyEduProject\Core\Controller;
  */
 class OrderController extends Controller
 {
-//    public $item;
-//    public $userId;
+    public $item;
+    public $userId;
 //
 //    public function beforeAction($action)
 //    {

@@ -8,7 +8,7 @@
  */
 namespace MVS\MyEduProject\Core;
 
-use application\controllers\ErrorsController;
+use MVS\MyEduProject\Application\Controllers\ErrorsController;
 
 class Bootstrap
 {

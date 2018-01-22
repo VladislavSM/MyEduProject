@@ -10,6 +10,10 @@ use MVS\MyEduProject\Core\Layout;
 <div class="row">
 
 <?php
+if(empty($items)){
+    echo '<div class="col-md-12 alert alert-info items-alert">На данный момент товары в этой категории отсутствуют.</div>';
+
+}
 
 foreach ($items as $item) {
 
@@ -17,7 +21,7 @@ foreach ($items as $item) {
         <div class="col-md-3 items-wrap">
                         <div class="col-md items">
                         <a href="/items/item/?id=' . $item['id'] . '">
-                            <img class="img-fluid" src="/images/ico.png">
+                            <img class="img-fluid" src="'.$item['image'].'">
                             <p class="item_title">' .$item['title'].' </p> </a>
 
                         <form class="form-inline" action="" method="post">
@@ -30,7 +34,7 @@ foreach ($items as $item) {
 
                         <a href="/items/item/?id=' . $item['id'] . '">
                             <div class="bg-info item_price"> '.$item['price'].' </div>
-                            <p class="item_summury">'.$item['discription'].'</p>
+                            <p class="item_summury">'.$item['summury'].'</p>
 
                         </a>
                         </div>

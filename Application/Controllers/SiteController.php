@@ -12,6 +12,7 @@ use MVS\MyEduProject\Core\Controller;
 use MVS\MyEduProject\Core\Session;
 use MVS\MyEduProject\Application\Models\Login;
 use MVS\MyEduProject\Application\Models\HomePage;
+use MVS\MyEduProject\Application\Models\Registr;
 
 class SiteController extends Controller
 {
@@ -57,4 +58,48 @@ class SiteController extends Controller
         $model->userLogout();
         $this->goHome();
     }
+
+    public function actionReg()
+    {
+        $authLogin = 'Введите логин*';
+        $authRepPass = 'Повторите пароль*';
+        $authEmail = 'Введите Ваш адрес электронной почты*';
+        $colorLog = 'black';
+        $colorRP = 'black';
+        $colorEm = 'black';
+        $model = new Registr;
+        $model->userReg();
+        if ($model->user === 'password does not match'){
+            $authRepPass = 'Повторный пароль несоответствует первому паролю!  ';
+            $colorRP = 'darkred';
+        }
+        if ($model->user === 'non-unique'){
+            $authLogin = 'Введенный Вами Логин занят, введите другой! ';
+            $colorLog = 'darkred';
+        }
+        if ($model->user === 'erroremail'){
+            $authEmail = 'Ошибка ввода,проверьте правильность!';
+            $colorEm = 'darkred';
+        }
+        if($model->user === 'new-user'){
+            $this->goHome();
+        }
+
+        $params['authLogin'] = $authLogin;
+        $params['authPass'] = 'Введите пароль*';
+        $params['authRepPass'] = $authRepPass;
+        $params['authName'] = 'Введите Ваше Имя';
+        $params['authSureName'] = 'Введите Вашу фамилию';
+        $params['authEmail'] = $authEmail;
+        $params['authPhone'] = 'Введите Ваш номер телефона*';
+        $params['authPhone2'] = 'Введите дополнительный номер телефона';
+        $params['colorLog'] = $colorLog;
+        $params['colorRP'] = $colorRP;
+        $params['colorEm'] = $colorEm;
+
+        $this->Render($this->template,$params);
+
+    }
+
+
 }

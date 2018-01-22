@@ -10,7 +10,8 @@
 namespace MVS\MyEduProject\Application\Models;
 
 use MVS\MyEduProject\Core\Session;
-
+use MVS\MyEduProject\Core\DataBase;
+use \PDO;
 class Login
 {
     public $user = false;
@@ -26,33 +27,16 @@ class Login
 
 
             if (!empty($login) && !empty($pass)) {
-
-                /** perform hashing when working with the database;
-                 */
-//            $pass = sha1($pass);
-                $users = require_once '../Application/temp_data_base/users.php';
-
-                $result = $this->findUser($users, $login, $pass);
-
-                /** execute query when working with the database;
-                 */
-//            $getUser = $db->prepare(
-//                'SELECT
-//                u.`login`, u.`password`
-//            FROM
-//                users u
-//            WHERE u.`login` = ?
-//                AND u.`password` = ?
-//                AND u.`status` != 0'
-//            );
-//            $getUser->execute([$login,$pass]);
-//            $result = $getUser->fetch();
+/**If there is no DATABASE, the user is selected from the default array:
+   $users = require_once '../Application/temp_data_base/users.php';
+ */
+                $result = $this->findUser($login, $pass);
 
                 if (!empty($result)) {
                     $session = new Session();
                     $session->start();
-                    Session::_set('identity', $result['login']);
-                    $this->user = $result['login'];
+                    Session::_set('identity', $result['username']);
+                    $this->user = $result['username'];
                 } else {
                     $this->user = 'unknown';
                     Session::_set('loginError', [
@@ -67,14 +51,30 @@ class Login
 
     public function userLogout()
     {
-
         Session::close();
     }
 
-    public function findUser($users, $login, $pass)
+    public function findUser($login, $pass)
     {
-
-        $result = false;
+        $db = DataBase::getInstance();
+        $db = $db->getConnection();
+        $getUser = $db->prepare(
+            'SELECT
+                u.`username`, u.`password`
+            FROM
+                users u
+            WHERE u.`username` = ?
+               
+                AND u.`status` != 0'
+        );
+        $getUser->execute([$login]);
+        $user = $getUser->fetch(PDO::FETCH_ASSOC);
+        if(password_verify($pass,$user['password'])===true){
+            $result = $user;
+        }else{
+            $result = false;
+        }
+/**     If there is no DATABASE, the user is selected from the default array:
         foreach ($users as $user) {
             if (in_array($login, $user) && $pass === $user['password']) {
                 return $user;
@@ -83,6 +83,7 @@ class Login
             }
             $result = $user;
         }
+*/
         return $result;
     }
 }

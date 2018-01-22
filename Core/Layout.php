@@ -15,8 +15,6 @@ class Layout
     private $adminHeader = APP_PATH . 'layout' . DS . 'adminheader.php';
     private $adminFooter = APP_PATH . 'layout' . DS . 'adminfooter.php';
     protected $controllerName;
-    protected $menu;
-    public $form;
     public static  $pageTitle;
 
     public function __construct(){

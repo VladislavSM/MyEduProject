@@ -6,7 +6,7 @@ use MVS\MyEduProject\Core\Session;
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-
+    <link rel="shortcut icon" href="/image/favicon.ico" id="favicon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>MyEduProject <?=Layout::$pageTitle;  ?></title>
@@ -23,7 +23,7 @@ use MVS\MyEduProject\Core\Session;
 <nav class="navbar  navbar-expand-lg bg-info navbar-dark fixed-top www">
     <!-- Brand -->
     <a class="navbar-brand" href="/site/index">
-        <img src="/images/logo2.png" alt="Logo" style="width:40px;"> <span class="brand">  MyEduProject</span>
+        <img src="/image/logo2.png" alt="Logo" style="width:40px;"> <span class="brand">  MyEduProject</span>
     </a>
 
     <!-- Toggler/collapsibe Button -->
@@ -38,11 +38,9 @@ use MVS\MyEduProject\Core\Session;
                 <a class="nav-link" href="/site/index">Главная</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="/items/items">Каталог</a>
+                <a class="nav-link" href="/catalog">Каталог</a>
 
             <?php
-//            var_dump($_SESSION,Session::_get('identity'));die;
-//            var_dump(User::$username);die;
             if (Session::_get('identity') !== false){
                 $userName = Session::_get('identity');
                 echo '<li class="nav-item">
@@ -54,13 +52,17 @@ use MVS\MyEduProject\Core\Session;
                                 <a class="nav-link" href="/site/login">Войти</a>
                            </li>
                            <li class="nav-item">
-                                <a class="nav-link" href="/site/createAccount">Создать аккаунт</a>
+                                <a class="nav-link" href="/site/reg">Создать аккаунт</a>
                             </li>';
             }
             ?>
-
+<?php
+$count = 0;
+?>
             <button class="cart"  data-toggle="modal" data-target="#myModal">
-                <img src="/images/ic_shopping_cart_white_24px.svg" style="width: 45px"></button>
+                <img src="/image/ic_shopping_cart_white_24px.svg" style="width: 40px">
+                <span class="badge badge-pill badge-light" style="height: 22px; font-size: 16px"><?=$count?></span>
+            </button>
         </ul>
     </div>
 </nav>
@@ -79,7 +81,7 @@ use MVS\MyEduProject\Core\Session;
                 <div class="row col-md-12 view-cart">
                     <?php ?>
                     <div class="col-md-3 view-cart-image" >
-                        <img class="img-fluid view-cart-image" src="/images/ico.png">
+                        <img class="img-fluid view-cart-image" src="/image/ico.png">
                     </div >
                     <div class=" view-cart-title"> Сумка Mottovoron Informa <span>  цена : 1100 грн.</span><br><br>
                         <form class="view-cart-form" action="#" method="post">
@@ -113,7 +115,7 @@ use MVS\MyEduProject\Core\Session;
     <div class="col-md-12"></div>
     <div class="jumbotron myjumbotron">
 
-        <img src="/images/header.png" style="width: 100%">
+        <img src="/image/header.png" style="width: 100%">
         <span class="display">My Edu Project</span>
     </div>
 

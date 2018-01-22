@@ -23,17 +23,19 @@ body {
 }
 .cart {
     margin-left: 3%;
+    padding-left: 4px;
+    padding-right: 4px;
+    border-radius: 5px;
     background-color: transparent;
 }
 .cart:hover{
-    background-color: springgreen;
+    background-color: darkturquoise;
 }
 .sitemenu {
     margin-right:3%;
 }
 .sitecontainer {
     padding: 0 11% 5.5% 11%;
-    /*height: 100%;*/
     min-height: 100%;
 }
 .login {
@@ -43,12 +45,19 @@ body {
     padding: 2% 5% 2% 5%;
     border: solid 1px darkslategrey;
 }
+
 .items-wrap{
     background-color: whitesmoke;
     border:solid 1px darkslategrey ;
     text-align: center;
     height: 410px;
     margin-top: 3px;
+}
+.items-alert{
+    text-align: center;
+    font-style: italic;
+    font-weight: bold;
+    font-size: 22px;
 }
 .items{
     background-color: whitesmoke;
@@ -94,13 +103,23 @@ body {
 .item_summury{
     color: darkslategrey;
 }
-.item-row{
-    /*background-color: whitesmoke;*/
+
+.carousel-image{
+    max-height: 400px;
 }
 .view_item{
-    margin-left: -0.75%;
+      float: left;
+    text-align: center;
+
+}
+.carousel-indicators li{
+   background-color: #0f9bab;
+    height: 10px;
+    border-radius: 20%;
+    border: 1px solid #0f9bab;
 }
 .item_view_details{
+    float: right;
     text-align: center;
     padding-top: 30px;
     font-size: 20px;
@@ -108,8 +127,6 @@ body {
 .amount-item-in-cart{
     width: 50%;
     height: 40px;
-    /*margin-right: 15px;*/
-    /*margin-left: 15px;*/
 }
 .item_cart{
     width: 50%;
@@ -117,26 +134,59 @@ body {
 .it-discr{
     color: darkslategrey;
     font-size: 24px;
-    /*margin-left:30% ;*/
 }
 .view-cart-title{
-    /*background-color: springgreen;*/
     padding: 7px;
+}
+.category-wrap{
+    background-color: whitesmoke;
+    outline: 1px solid darkslategrey ;
+    outline-offset:-3px ;
+    text-align: center;
+    padding-left: 11px;
+    padding-right: 0;
+}
+.category-wrap a {
+    color: darkslategrey;
+}
+.category-img{
+    float: left;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-top: 3px;
+}
+.category-title{
+    float: right;
+    padding-top: 20px;
+}
+.category-title p {
+    font-weight: bold;
+    font-style: italic;
+}
+.category-title a:hover{
+    text-decoration: none;
+}
+.img-category{
+    width: 100%;
+}
+.subCategory{
+    color: darkslategrey;
+    border: solid 1px gainsboro;
+}
+.subCategory:hover{
+    color: black;
+    border: solid 2px darkslategrey;
+    background-color: gainsboro;
+    text-decoration: none;
 }
 .footer {
     clear: both;
-    /*position: relative;*/
-    /*z-index: 999;*/
     height: 13%;
     margin: -5% 10% 0.25% 10%;
     background-color: black;
-    /*border-top: 1px solid #ddd;*/
-    /*padding-top: 0.25%;*/
-    /*padding-left: 2.5%;*/
-    /*padding-bottom: 0.25%;*/
-    /*margin-top: 25%;*/
     text-align: left;
-    /*font-size: 0.71vw;*/
     color: floralwhite;
 
 }

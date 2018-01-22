@@ -34,6 +34,7 @@ class Config
         foreach ($iterator as $file) {
             if ($file->isFile()) {
                 $this->configs[$file->getBasename('.php')] = require_once $file->getPathname();
+//                var_dump($this->configs);
             }
         }
 

@@ -7,11 +7,12 @@
  * Time: 18:45
  */
 namespace MVS\MyEduProject\Core;
+use MVS\MyEduProject\Core\Config;
 use \Exception;
 use \PDO;
 class DataBase
 {
-    const DEFAULT_CONNECTION = '';
+    const DEFAULT_CONNECTION = 'myeduproject';
     public static $instance;
     protected $connectionName;
     protected $connection;
@@ -38,7 +39,7 @@ class DataBase
      */
     private function __construct($nameDb){
         $config  = Config::getInstance();
-
+//var_dump($nameDb);
         if (!array_key_exists($nameDb, $config->get('db'))) {
             throw new Exception('DB connection doesn\'t exist');
         }

@@ -5,11 +5,10 @@
  * Date: 26.04.17
  * Time: 17:06
  */
-//$db = new PDO('mysql:host=localhost;dbname=mvc;charset=UTF8', 'vlad',96443);
 return [
-    'mvc' => [
+    'myeduproject' => [
                 'host'    => 'localhost',
-                'dbname'  => 'mvc',
+                'dbname'  => 'myeduproject',
                 'charset' => 'UTF8',
                 'login'   => 'vlad',
                 'pass'    =>  96443,
