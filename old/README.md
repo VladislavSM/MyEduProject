@@ -1,2 +1,0 @@
-# MyHomePro
-All home pages
