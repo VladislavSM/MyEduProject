@@ -1,2 +1,2 @@
-# MyHomePro
-All home pages
+# MyEduProject
+Education repository
