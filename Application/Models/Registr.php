@@ -48,7 +48,7 @@ class Registr
                 if ($this->user) {
                     $session = new Session();
                     $session->start();
-                    Session::_set('identity', $login);
+                    Session::set('identity', $login);
                     $this->user = 'new-user';
                 }
             } else {

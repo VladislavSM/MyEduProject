@@ -35,11 +35,12 @@ class Login
                 if (!empty($result)) {
                     $session = new Session();
                     $session->start();
-                    Session::_set('identity', $result['username']);
+                    Session::set('identity', $result['username']);
+                    Session::set('identityId', $result['id']);
                     $this->user = $result['username'];
                 } else {
                     $this->user = 'unknown';
-                    Session::_set('loginError', [
+                    Session::set('loginError', [
                         'login' => '<p class="errorinp">Неврный логин</p>',
                         'pass' => '<p class="errorinp">Неврный пароль</p>'
                     ]);
@@ -60,12 +61,13 @@ class Login
         $db = $db->getConnection();
         $getUser = $db->prepare(
             'SELECT
-                u.`username`, u.`password`
+                u.`id`, u.`username`, u.`password`
             FROM
                 users u
-            WHERE u.`username` = ?
-               
-                AND u.`status` != 0'
+            WHERE 
+                u.`username` = ?
+            AND 
+                u.`status` != 0'
         );
         $getUser->execute([$login]);
         $user = $getUser->fetch(PDO::FETCH_ASSOC);

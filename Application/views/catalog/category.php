@@ -17,7 +17,7 @@ foreach ($categories as $category) {
         <div class="col-md-4 category-wrap">
         <a href="/items/items/?id='.$category['id'].'">
                         <div class="col-md-4 category-img">
-                            <img class="img-category" src="'.$category['image'].'">
+                            <img class="img-fluid img-category" src="'.$category['image'].'">
                         </div></a>
                        
                         <div class="col-md-8 category-title">

@@ -7,82 +7,76 @@
  * Time: 15:27
  */
 namespace MVS\MyEduProject\Application\Models;
+use MVS\MyEduProject\Core\DataBase;
 
 
 class Cart
-//         extends ActiveRecord
-
 {
+    public function viewOrder($userId,$status){
+        $db = DataBase::getInstance();
+        $db = $db->getConnection();
+        $query = $db->prepare('SELECT o.`id`,o.`userId`,o.`date_order`,o.`status`,ito.`orderId`,
+                                                ito.`itemId`,ito.`price`,ito.`quantity`,ito.`sumForItem`,
+                                                it.`title`,it.`image`
+                                         FROM orders o
+                                         LEFT JOIN itemToOrder ito ON o.`id`=ito.`orderId`
+                                         JOIN item it ON ito.`itemId`=it.`id`
+                                         WHERE o.`userId`=?
+                                         AND o.`status`=?');
+        $query->execute([$userId,$status]);
+        $newOrder = $query->fetchAll(\PDO::FETCH_ASSOC);
 
-//    public $number;
-//
-//    public function viewOrder($userId,$status){
-//
-//        return (new \yii\db\Query())
-//            ->select(['or.id','or.userId','or.date_order','or.status','ito.orderId','ito.itemId','ito.price','ito.quantity','ito.sumForItem',
-//                'it.title','it.image'])
-//            ->from('orders or')
-//            ->leftJoin('itemToOrder ito','or.id=ito.orderId')
-//            ->innerJoin('item it','ito.itemId=it.id')
-//            ->where('or.userId=:userId',[':userId'=>$userId])
-//            ->andWhere(['or.status'=>$status])
-//            ->all();
-//
-//    }
-//
-//    public function viewOrders($id){
-//
-//        return (new \yii\db\Query())
-//            ->select(['or.id','or.userId','or.date_order','or.status','ito.orderId','ito.itemId','ito.price','ito.quantity','ito.sumForItem',
-//                'it.title','it.image'])
-//            ->from('orders or')
-//            ->leftJoin('itemToOrder ito','or.id=ito.orderId')
-//            ->innerJoin('item it','ito.itemId=it.id')
-//            ->where('or.id=:id',[':id'=>$id])
-//            ->all();
-//
-//    }
-//    public function findOrder($status,$userId){
-//        return (new \yii\db\Query())
-//            ->select('id')
-//            ->from('orders')
-////        ->where('userId=:userId', [':userId' => Yii::$app->user->identity['id']])
-//            ->where('userId=:userId', [':userId' => $userId])
-//            ->andWhere(['status'=>$status])
-//
-//            ->one();
-//
-//    }
-//    public function findOrders($userId){
-//        return (new \yii\db\Query())
-//            ->select(['or.id','or.date_order', 'or.status', 'it.title','ito.quantity','ito.price',
-//                'ito.sumForItem', ])
-//            ->from('orders or')
-//            ->innerJoin('itemToOrder ito','or.id=ito.orderId')
-//            ->innerJoin('item it','ito.itemId=it.id')
-//            ->where('userId=:userId', [':userId' => $userId])
-//            ->orderBy('id DESC')
-//            ->all();
-//
-//    }
-//    public function countItem($orderId){
-//        return (new \yii\db\Query())
-//            ->select('quantity')
-//            ->from('itemToOrder')
-//            ->where('orderId=:orderId',[':orderId'=>$orderId])
-//            ->sum('quantity');
-//
-//
-//    }
-//    public function totalSum($orderId){
-//        return (new \yii\db\Query())
-//            ->select('sumForItem')
-//            ->from('itemToOrder')
-//            ->where('orderId=:orderId',[':orderId'=>$orderId])
-//            ->sum('sumForItem');
-//
-//
-//    }
+        return $newOrder;
+    }
+
+    public function findOrder($status,$userId){
+        $db = DataBase::getInstance();
+        $db = $db->getConnection();
+        $query = $db->prepare('SELECT id
+                                         FROM orders
+                                         WHERE `userId`=?
+                                         AND `status`=?');
+        $query->execute([$userId,$status]);
+        $id = $query->fetch(\PDO::FETCH_ASSOC);
+
+        return $id;
+    }
+
+    public function countItem($orderId){
+        $db = DataBase::getInstance();
+        $db = $db->getConnection();
+        $query = $db->prepare('SELECT SUM(quantity)
+                                         AS amount,
+                                         SUM(sumForItem)
+                                         AS totalsum
+                                         FROM itemToOrder
+                                         WHERE `orderId`=?');
+        $query->execute([$orderId]);
+        $count = $query->fetch(\PDO::FETCH_ASSOC);
+        return $count;
+    }
+
+    public function delete($orderId, $itemId){
+        $db = DataBase::getInstance();
+        $db = $db->getConnection();
+        $query = $db->prepare('DELETE FROM itemToOrder
+                                         WHERE `orderId`=?
+                                         AND `itemId`=?');
+        $query->execute([$orderId, $itemId]);
+
+    }
+    public function update($orderId, $itemId, $count,$price){
+        $db = DataBase::getInstance();
+        $db = $db->getConnection();
+        $query = $db->prepare('UPDATE itemToOrder
+                                        SET quantity = ?,
+                                            sumForItem = ?
+                                         WHERE `orderId`=?
+                                         AND `itemId`=?
+                                         ');
+        $query->execute([$count,$price*$count,$orderId, $itemId]);
+
+    }
 
 
 }

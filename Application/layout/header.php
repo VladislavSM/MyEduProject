@@ -1,6 +1,9 @@
 <?php
 use MVS\MyEduProject\Core\Layout;
 use MVS\MyEduProject\Core\Session;
+use MVS\MyEduProject\Application\Models\Cart;
+use MVS\MyEduProject\Application\Models\Order;
+use MVS\MyEduProject\Application\Controllers\OrderController;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,12 +44,20 @@ use MVS\MyEduProject\Core\Session;
                 <a class="nav-link" href="/catalog">Каталог</a>
 
             <?php
-            if (Session::_get('identity') !== false){
-                $userName = Session::_get('identity');
+            if (Session::get('identity') !== false) {
+                $userName = Session::get('identity');
                 echo '<li class="nav-item">
+                            <a class="nav-link" href="/site/logout">Выйти:( ' . $userName . ' )</a>
+                      </li>';
+            }
+
+                elseif(Session::get('identityId')!==false){
+                    $userName = 'user№ '.Session::get('identityId').'';
+                    echo '<li class="nav-item">
                             <a class="nav-link" href="/site/logout">Выйти:( '. $userName .' )</a>
                       </li>';
-            }else {
+                }
+            else {
 
                 echo '<li class="nav-item">
                                 <a class="nav-link" href="/site/login">Войти</a>
@@ -57,67 +68,80 @@ use MVS\MyEduProject\Core\Session;
             }
             ?>
 <?php
-$count = 0;
-?>
-            <button class="cart"  data-toggle="modal" data-target="#myModal">
-                <img src="/image/ic_shopping_cart_white_24px.svg" style="width: 40px">
-                <span class="badge badge-pill badge-light" style="height: 22px; font-size: 16px"><?=$count?></span>
-            </button>
+$cart = new Cart();
+$userId = Session::get('identityId');
+$status = Order::ORDER_OPEN;
+$count  = $cart->countItem($cart->findOrder($status,$userId)['id']);
+if($count['amount'] === null && $count['totalsum']===null){
+    $count['amount'] = '0';
+    $count['totalsum'] = '0';
+
+}?>
+                <a class="btn cart" href="/order/viewcart">
+<!--                <button class="btn cart">-->
+<!--                        data-toggle="modal" data-target="#myModal"-->
+<!--                >-->
+                <img src="/image/ic_shopping_cart_white_24px.svg" style="width: 40px;float: left">
+                <span class="badge badge-info" style="height: 36px; font-size: 14px; margin-top: 2px;float: right">
+                      <?=$count['amount']?> единиц товара</br>
+                    на сумму <?=$count['totalsum']?> грн.</span>
+<!--                </button>-->
+                </a>
         </ul>
     </div>
 </nav>
-<div class="modal fade" id="myModal">
-    <div class="modal-dialog modal-lg">
-        <div class="modal-content">
-
-            <div class="modal-header">
-                <h4 class="modal-title">Вы добавили в Корзину:</h4>
-                <button type="button" class="close" data-dismiss="modal">&times;</button>
-            </div>
-
-            <div class="modal-body">
-
-
-                <div class="row col-md-12 view-cart">
-                    <?php ?>
-                    <div class="col-md-3 view-cart-image" >
-                        <img class="img-fluid view-cart-image" src="/image/ico.png">
-                    </div >
-                    <div class=" view-cart-title"> Сумка Mottovoron Informa <span>  цена : 1100 грн.</span><br><br>
-                        <form class="view-cart-form" action="#" method="post">
-
-                            <input class="field fieldCount"
-                                   title="в количестве" type="number" name="count" value="1" data-min="1" data-max="200">
-                            <i class="sum-for-item"> сумма : 1100 грн</i>
-                            <button type="submit"  name="delete" class="delete-from-cart btn-link">Удалить</button>
-
-
-                            <input type="hidden" name="orderId" value="'. $order['orderId'] .'">
-                            <input type="hidden" name="itemId" value="'. $order['itemId'] .'">
-
-
-                        </form>
-                    </div>
-
-                </div>
-            </div>
-
-            <div class="modal-footer">
-                <a type="button" class="btn btn-info" href="index.html">Оформить заказ</a>
-                <button type="button" class="btn btn-info" data-dismiss="modal">Продолжить покупки</button>
-            </div>
-
-        </div>
-    </div>
-</div>
+<!--<div class="modal fade" id="myModal">-->
+<!--    <div class="modal-dialog modal-lg">-->
+<!--        <div class="modal-content">-->
+<!--            <div class="modal-header">-->
+<!--                <h4 class="modal-title">Вы добавили в Корзину:</h4>-->
+<!--                <button type="button" class="close" data-dismiss="modal">&times;</button>-->
+<!--            </div>-->
+<!--            <div class="modal-body">-->
+<!--                <div class="row col-md-12 view-cart">-->
+<!--                    <div class="col-md-3 view-cart-image" >-->
+<!--                        <img class="img-fluid view-cart-image" src="/image/ico.png">-->
+<!--                    </div >-->
+<!--                    <div class=" view-cart-title"> Сумка Mottovoron Informa <span>  цена : 1100 грн.</span><br><br>-->
+<!--                        <form class="view-cart-form" action="#" method="post">-->
+<!--                            <input class="field fieldCount"-->
+<!--                                   title="в количестве" type="number" name="count" value="1" data-min="1" data-max="200">-->
+<!--                            <i class="sum-for-item"> сумма : 1100 грн</i>-->
+<!--                            <button type="submit"  name="delete" class="delete-from-cart btn-link">Удалить</button>-->
+<!--                            <input type="hidden" name="orderId" value="'. $order['orderId'] .'">-->
+<!--                            <input type="hidden" name="itemId" value="'. $order['itemId'] .'">-->
+<!--                        </form>-->
+<!--                    </div>-->
+<!--                </div>-->
+<!--            </div>-->
+<!--            <div class="modal-footer">-->
+<!--                <a type="button" class="btn btn-info" href="index.html">Оформить заказ</a>-->
+<!--                <button type="button" class="btn btn-info" data-dismiss="modal">Продолжить покупки</button>-->
+<!--            </div>-->
+<!--        </div>-->
+<!--    </div>-->
+<!--</div>-->
 
 <div class="container-fluid sitecontainer">
     <div class="col-md-12"></div>
     <div class="jumbotron myjumbotron">
 
-        <img src="/image/header.png" style="width: 100%">
+        <div><img class="img-fluid" src="/image/header.png" style=""></div>
         <span class="display">My Edu Project</span>
     </div>
+
+    <?php
+    if(Session::get('message') !==false &&
+       $_SERVER['HTTP_REFERER'] === 'http://eduproject.loc'.$_SERVER['REQUEST_URI']){
+
+        $message = Session::get('message');
+
+        echo '
+        <div class="alert alert-info  alert-dismissable fade show">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        '.$message.'</div>';
+    }
+    ?>
 
     <!--CONTENT-->
 

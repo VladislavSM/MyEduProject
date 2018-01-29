@@ -29,6 +29,12 @@ class Bootstrap
 
     public function __construct()
     {
+        $session = new Session();
+        $session->setSessionSavePath('../session');
+        if(isset($_COOKIE['PHPSESSID'])){
+            $session->start();
+            $session->identitySession();
+        }
         $request = Request::getInstance();
         $controllerName = $request->getParam('controller');
         $actionName = $request->getParam('action');
@@ -36,12 +42,7 @@ class Bootstrap
         $controller = $dispatcher->getController($controllerName);
         $action = $dispatcher->getAction($actionName, $controllerName);
         if (method_exists($controller, $action)) {
-            $session = new Session();
-            $session->setSessionSavePath('../session');
-            if(isset($_COOKIE['PHPSESSID'])){
-                $session->start();
-                $session->identitySession();
-            }
+
             ob_start();
             $controller->$action();
             $content = ob_get_contents();

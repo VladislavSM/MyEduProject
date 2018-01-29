@@ -59,3 +59,8 @@ function cartItemCounter(field){
 }
 
 cartItemCounter('.fieldCount');
+
+//        print '<script language="javascript">
+//                    alert("'.$message.'");
+//                    history.back();
+//               </script>';

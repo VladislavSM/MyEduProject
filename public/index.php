@@ -18,6 +18,7 @@
 
 use MVS\MyEduProject\Core\Bootstrap;
 
+
 define('DS', DIRECTORY_SEPARATOR);
 define('APP_PATH', '..' . DS . 'Application' . DS);
 

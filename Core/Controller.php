@@ -11,7 +11,7 @@
  * You can override yous public $defaulAction in in the desired controller.
  */
 namespace MVS\MyEduProject\Core;
-
+use MVS\MyEduProject\Core\Session;
 class Controller
 {
     protected $template;
@@ -34,6 +34,7 @@ class Controller
         $this->init();
 
 
+
     }
 
     protected function init() {}
@@ -51,5 +52,9 @@ class Controller
 
         header('Location:/site/index');
     }
+    public function goBack(){
+        header('Location:'.$_SERVER["HTTP_REFERER"].' ');
+    }
+
 
 }

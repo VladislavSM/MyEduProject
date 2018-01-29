@@ -56,7 +56,7 @@ use MVS\MyEduProject\Core\Layout;
             <p > '.$item['title'].' </p >
             <p > Цена '.$item['price'].' грн.</p >
          <div class="form-for-item" >
-             <form class="form-inline" action = "" method = "post" >
+             <form class="form-inline" action = "/order/add" method = "post" >
                 <input type = "hidden" name = "id" value = "'.$item['id'].'" >
                 <input type = "hidden" name = "title" value = " '.$item['title'].'" >
                 <input type = "hidden" name = "price" value = " '.$item['price'].'" >

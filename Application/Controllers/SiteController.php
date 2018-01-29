@@ -17,6 +17,7 @@ use MVS\MyEduProject\Application\Models\Registr;
 class SiteController extends Controller
 {
 
+
     public function actionIndex() {
         $model = new HomePage();
         $params['homePage'] = $model->getContent();
@@ -26,7 +27,7 @@ class SiteController extends Controller
 
     public function actionLogin(){
 
-        if(Session::_get('identity') !== false){
+        if(Session::get('identity') !== false){
             $this->goHome();
         }
         $authLogin = 'Введите логин';

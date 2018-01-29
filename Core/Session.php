@@ -38,12 +38,12 @@ class Session
         }
     }
 
-    public static function _set($key,$value)
+    public static function set($key,$value)
     {
         $_SESSION[$key]= $value;
 
     }
-    public static function _get($key)
+    public static function get($key)
     {
         $result = false;
 
@@ -59,5 +59,6 @@ class Session
         setcookie('PHPSESSID',"",time()-3600,'/');
         session_destroy();
     }
+
 
 }

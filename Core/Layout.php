@@ -16,6 +16,7 @@ class Layout
     private $adminFooter = APP_PATH . 'layout' . DS . 'adminfooter.php';
     protected $controllerName;
     public static  $pageTitle;
+    public static  $flashMessage;
 
     public function __construct(){
 

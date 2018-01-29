@@ -22,20 +22,25 @@ body {
     font-family: "Droid Sans Japanese";
 }
 .cart {
-    margin-left: 3%;
-    padding-left: 4px;
-    padding-right: 4px;
-    border-radius: 5px;
+    margin-left: 1%;
+    margin-right: -2rem;
+    padding: 0;
+    /*padding-left: 4px;*/
+    /*padding-right: 4px;*/
+    /*border-radius: 5px;*/
     background-color: transparent;
 }
-.cart:hover{
+.cart:hover {
+    background-color: darkturquoise;
+}
+.cart:hover span{
     background-color: darkturquoise;
 }
 .sitemenu {
     margin-right:3%;
 }
 .sitecontainer {
-    padding: 0 11% 5.5% 11%;
+    padding: 0 10% 5.95% 10%;
     min-height: 100%;
 }
 .login {
@@ -79,9 +84,13 @@ body {
     margin-right: -20px;
     padding:5px;
     text-align: center;
+    border: solid 1px gainsboro ;
+    border-radius: 4px;
 }
 .display{
-    font-size: 4vw;
+    font-size: 2vw;
+    font-weight: bold;
+    font-family: "Times New Roman";
 }
 .amount-item-in-cart-from-catalog {
     width: 40%;
@@ -137,6 +146,18 @@ body {
 }
 .view-cart-title{
     padding: 7px;
+    float: right;
+    /*background-color: cyan;*/
+    font-size: 18px;
+    text-align: center;
+}
+.view-cart-image{
+    float: left;
+    max-height: 107px;
+    /*background-color: red;*/
+}
+.view-cart{
+    border-top: solid 1px gainsboro;
 }
 .category-wrap{
     background-color: whitesmoke;
@@ -169,7 +190,7 @@ body {
     text-decoration: none;
 }
 .img-category{
-    width: 100%;
+    /*width: 100%;*/
 }
 .subCategory{
     color: darkslategrey;
@@ -181,12 +202,69 @@ body {
     background-color: gainsboro;
     text-decoration: none;
 }
+.modfutter{
+    width: 100%;
+    margin-top: 13px;
+    border-top: solid 1px gainsboro;
+    padding-top: 15px;
+}
+.total-sum{
+    float: left;
+    font-size: 20px;
+    text-align: center;
+}
+.viewcart{
+    /*background-color: cyan;*/
+    /*padding: 0;*/
+    float: left;
+    /*height: 150px;*/
+}
+.vic{
+    margin-top: 11px;
+    border-top: solid 1px darkslategrey;
+    padding-top: 7px;
+}
+.viewcartimage{
+    float: left;
+    /*background-color: mediumblue;*/
+    /*max-height: 50px;*/
+}
+.viewcarttitle{
+    font-size: medium;
+    float: left;
+}
+.totalsum{
+    font-size:large;
+    border-top: solid 1px darkslategrey;
+    margin-top: 7px;
+    text-align: center;
+    width: 100%;
+}
+.ordering1{
+    float: right;
+    margin-bottom: 15px;
+    background-color: gainsboro;
+    padding: 15px;
+    text-align: center;
+}
+.alert-ordering{
+    background-color: darkturquoise;
+    color: white;
+    font-family: "Times New Roman";
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.11em;
+
+}
 .footer {
     clear: both;
+    width: 100%;
     height: 13%;
-    margin: -5% 10% 0.25% 10%;
-    background-color: black;
+    margin: -5.65% 0% -0.25% 0%;
+    background-color: #0f9bab;
     text-align: left;
+    padding-left:11px;
+    padding-top: 11px;
     color: floralwhite;
 
 }

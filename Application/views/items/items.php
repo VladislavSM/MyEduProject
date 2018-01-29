@@ -24,7 +24,7 @@ foreach ($items as $item) {
                             <img class="img-fluid" src="'.$item['image'].'">
                             <p class="item_title">' .$item['title'].' </p> </a>
 
-                        <form class="form-inline" action="" method="post">
+                        <form class="form-inline" action="/order/add" method="post">
                                 <input class="amount-item-in-cart-from-catalog" type="number" name="count" min="1" value="1">
                                 <input type="hidden" name="id" value="'.$item['id'].'">
                                 <input type="hidden" name="title" value="'.$item['title'].'">
@@ -33,7 +33,7 @@ foreach ($items as $item) {
                         </form>
 
                         <a href="/items/item/?id=' . $item['id'] . '">
-                            <div class="bg-info item_price"> '.$item['price'].' </div>
+                            <div class="bg-info item_price">Цена :  '.$item['price'].' грн. </div>
                             <p class="item_summury">'.$item['summury'].'</p>
 
                         </a>
