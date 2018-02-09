@@ -5,9 +5,54 @@ use MVS\MyEduProject\Core\Layout;
 
     Layout::$pageTitle = 'Cумки';
 
-?>
+//  $value = $_POST['sell'];
+$selected_0 = 'selected';
+$selected_1 = '';
+$selected_2 = '';
+$selected_3 = '';
+switch ($value) {
+    case "id":
+        $selected_0 = 'selected';
+        $selected_1 = '';
+        $selected_2 = '';
+        $selected_3 = '';
+        break;
+    case "price ASC":
+        $selected_0 = '';
+        $selected_1 = 'selected';
+        $selected_2 = '';
+        $selected_3 = '';
+        break;
+    case "price DESC":
+        $selected_0 = '';
+        $selected_1 = '';
+        $selected_2 = 'selected';
+        $selected_3 = '';
+        break;
+    case "title":
+        $selected_0 = '';
+        $selected_1 = '';
+        $selected_2 = '';
+        $selected_3 = 'selected';
+        break;
+    default:
+        $selected = '';
+}
 
+?>
+<div class="form-group">
+    <form class="form-inline justify-content-end" action="/items/items/?id=<?=$items[0]['categoryId']?>" method="post">
+        <select class="form-control"name="sell">
+            <option value="id"<?=$selected_0?> >По умолчанию</option>
+            <option value="price ASC" <?=$selected_1?>>Cортировать по возрастанию цены.</option>
+            <option value="price DESC"<?=$selected_2?>>Cортировать по убыванию цены.</option>
+            <option value="title"<?=$selected_3?>>Cортировать по названию.</option>
+        </select>
+            <button class="btn btn-info" type="submit">Применить.</button>
+    </form>
+</div>
 <div class="row">
+
 
 <?php
 if(empty($items)){

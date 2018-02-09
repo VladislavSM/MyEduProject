@@ -6,27 +6,12 @@
  * Time: 15:49
  */
 
-/*
- * You can see the implementation in the modal window
- * by clicking on the cart icon on any page of the current project.
- */
-//var_dump($_GET);
 ?>
-<!--<script language="JavaScript">-->
-<!--    function clickOnButton()-->
-<!--    {-->
-<!--    document.getElementById('Modal').onclick();-->
-<!--    }-->
-<!--    </script>-->
 
-
-<!--<div class="col-md-12">-->
-<!--    <div>-->
         <div class="modal-content">
 
             <div class="modal-header mh">
                 <h4 class="modal-title"><?=$message?></h4>
-<!--                <button type="button" class="close" data-dismiss="modal">&times;</button>-->
             </div>
 
             <div class="modal-body">
@@ -79,9 +64,7 @@
                     <div class="modfutter">
                         <div class=" col-md-6  total-sum">Общая сумма заказа : <?=$totalSum?> грн.</div>
                     <?php
-//                    var_dump($newOrder['0']);die;
                     if($newOrder === false || $newOrder == null){
-
                         echo '';
                     }else{
                         echo '
@@ -96,7 +79,7 @@
                     
                     </div>
                 </div>
-<!--</div>-->
+
 <script>function cartItemCounter(field){
 
         var fieldCount = function(el) {

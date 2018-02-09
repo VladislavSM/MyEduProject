@@ -18,6 +18,7 @@ use MVS\MyEduProject\Application\Controllers\OrderController;
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.6/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js"></script>
+<!--    <script src="/js/myscript.js"></script>-->
     <link href="/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 
@@ -67,6 +68,13 @@ use MVS\MyEduProject\Application\Controllers\OrderController;
                             </li>';
             }
             ?>
+
+                <form class="form-inline search-form " action="/items/search" method="post">
+                    <input class="form-control" type="text" name="searchQuery" placeholder="Поиск товаров" required>
+                    <button class="btn btn-info btn-sm" type="submit">Найти</button>
+                </form>
+
+
 <?php
 $cart = new Cart();
 $userId = Session::get('identityId');
@@ -121,18 +129,30 @@ if($count['amount'] === null && $count['totalsum']===null){
 <!--        </div>-->
 <!--    </div>-->
 <!--</div>-->
-
 <div class="container-fluid sitecontainer">
-    <div class="col-md-12"></div>
     <div class="jumbotron myjumbotron">
+        <div id="demo" class="carousel slide" data-ride="carousel">
 
-        <div><img class="img-fluid" src="/image/header.png" style=""></div>
-        <span class="display">My Edu Project</span>
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img class="img-fluid"src="/image/header.png">
+                </div>
+                <div class="carousel-item">
+                    <img class="img-fluid"src="/image/wewas7.png">
+                </div>
+            </div>
+
+        </div>
+<!--        <div><img class="img-fluid" src="/image/header.png"></div>-->
+        <span class="display" style="margin: auto">My Edu Project- мото сумки, багажные системы и
+                                                    дуги безопасности на мотоциклы, мото экипировка.
+        </span>
     </div>
 
     <?php
+
     if(Session::get('message') !==false &&
-       $_SERVER['HTTP_REFERER'] === 'http://eduproject.loc'.$_SERVER['REQUEST_URI']){
+       $_SERVER['HTTP_REFERER'] === 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']){
 
         $message = Session::get('message');
 

@@ -33,7 +33,7 @@ function cartItemCounter(field){
                 if(!min || value >= min) {
                     el[0].value = value;
                 }
-            };
+            }
 
             // Увеличим значение
             function increment() {
@@ -44,7 +44,7 @@ function cartItemCounter(field){
                 if(!max || value <= max) {
                     el[0].value = value++;
                 }
-            };
+            }
 
         }
 

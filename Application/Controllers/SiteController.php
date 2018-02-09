@@ -21,7 +21,6 @@ class SiteController extends Controller
     public function actionIndex() {
         $model = new HomePage();
         $params['homePage'] = $model->getContent();
-
         $this->Render($this->template,$params);
   }
 

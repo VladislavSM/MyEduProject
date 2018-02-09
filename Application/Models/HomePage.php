@@ -20,5 +20,4 @@ class HomePage
         return $this->content;
     }
 
-
 }

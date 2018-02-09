@@ -20,7 +20,11 @@ class ItemsController extends Controller
     public function actionItems() {
         $model = new Items();
         $params['items'] = $model->findItems();
-
+        if (!empty($_POST)){
+            $params['value'] = $_POST['sell'];
+        }else{
+            $params['value'] = 'id';
+        }
         $this->Render($this->template,$params);
     }
 
@@ -30,8 +34,27 @@ class ItemsController extends Controller
         $params['path'] = $model->findPath($this->path);
         $params['images'] = $model->viewImage();
         $params['item'] = $model->findItem();
+        $params['comments'] = $model->findComments();
+        $params['bought'] = $model->didTheUserBuyThisProduct();
+//        var_dump($params['comments']);die;
 
         $this->Render($this->template,$params);
 
+    }
+    public function actionAddcomment(){
+        $model = new Items();
+        $model->addComment();
+            $result = 'Ваш отзыв добавлен. Если Ваш отзыв не соответствует предъявляемым требованиям
+                       он будет удален ! С Уважением администрация My Edu Project !';
+
+//        $this->Render($this->template,$params);
+
+    }
+
+    public function actionSearch(){
+        $model = new Items();
+        $params['items'] = $model->search();
+        $params['offer'] = $model->offerOfGoods();
+        $this->Render($this->template,$params);
     }
 }

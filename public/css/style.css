@@ -21,9 +21,23 @@ body {
 .nav-link{
     font-family: "Droid Sans Japanese";
 }
+.search-form{
+    margin-left: 1%;
+}
+.search-form input{
+    height: 33.5px;
+    max-width: 75%;
+}
+.search-form button {
+    color: whitesmoke;
+    font-weight: bold;
+    border: solid 2px whitesmoke;
+    margin-left: -4px;
+    /*background-color:lightseagreen;*/
+}
 .cart {
     margin-left: 1%;
-    margin-right: -2rem;
+    /*margin-right: -1rem;*/
     padding: 0;
     /*padding-left: 4px;*/
     /*padding-right: 4px;*/
@@ -49,6 +63,31 @@ body {
     margin-bottom: 2.5%;
     padding: 2% 5% 2% 5%;
     border: solid 1px darkslategrey;
+}
+.home-page{
+    font-family: "Times New Roman";
+}
+.home-page p {
+    font-style: italic;
+    font-size: 1.11em;
+}
+.home-page h2 {
+    font-size: 2.5em;
+    text-align: center;
+}
+.alert button{
+    color: red;
+    width: 25px;
+    height: 25px;
+    border: solid 1px whitesmoke;
+    border-radius: 50%;
+    background-color: whitesmoke;
+    opacity: 1;
+}
+.alert button:hover{
+    color: white;
+    opacity: 1;
+    background-color: red;
 }
 
 .items-wrap{
@@ -77,6 +116,7 @@ body {
     background-color: floralwhite;
     z-index: 999;
 }
+
 .myjumbotron{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -88,7 +128,7 @@ body {
     border-radius: 4px;
 }
 .display{
-    font-size: 2vw;
+    font-size: 1.25em;
     font-weight: bold;
     font-family: "Times New Roman";
 }
@@ -132,6 +172,42 @@ body {
     text-align: center;
     padding-top: 30px;
     font-size: 20px;
+}
+#div-user-comment {
+    display: none;
+}
+#form-user-comment, #counter{
+    padding-top: 5px;
+}
+.user_comments{
+
+    margin: 2% 0 2% 0;
+    font-size: 0.85em;
+}
+.user_comments button{
+    margin-top: 1%;
+    margin-bottom: 1%;
+}
+.open-comments{
+    color: green;
+}
+.close-comments{
+    color: darkred;
+}
+.open-comments, .close-comments{
+    margin-left: 9px;
+    padding: 3px 7px 3px 7px;
+    /*width: 40px;*/
+    /*height: 30px;*/
+    border-radius: 17%;
+    cursor: pointer;
+    border: 1px solid floralwhite;
+    background-color: honeydew;
+}
+.comment-content{
+    font-family: "Times New Roman";
+    border-bottom: solid 2px gainsboro;
+    background-color: honeydew;
 }
 .amount-item-in-cart{
     width: 50%;

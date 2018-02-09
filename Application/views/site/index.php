@@ -16,8 +16,16 @@ if(Session::get('message') !==false &&
         '.$message.'</div>';
 }
 
-    echo ' <div class="col-md-12">
-        <br><h2 class="" style="font-size: 4vw;font-family: Georgia; text-align: center">'.$homePage.'</h2>
+    echo ' <div class="col-md-12 home-page">
+                <br><h2>'.$homePage.'</h2><br>
+                <div class="alert alert-info  alert-dismissable fade show">
+                <button type="button" class="close" data-dismiss="alert">&times;</button>
+                <p>Если Вы зарегистрированный пользователь и хотите оставить отзыв ?
+                Зайдите на страничку купленного Вами товара и напишите свой отзыв о
+                товаре или работе нашего магазина.</p>
+                <p><strong>С уважением администрация My Edu Project.</strong></p>
+                </div>
+        
           </div>';
 
 ?>
