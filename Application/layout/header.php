@@ -70,10 +70,9 @@ use MVS\MyEduProject\Application\Controllers\OrderController;
             ?>
 
                 <form class="form-inline search-form " action="/items/search" method="post">
-                    <input class="form-control" type="text" name="searchQuery" placeholder="Поиск товаров" required>
+                    <input class="form-control who" type="text" name="searchQuery" placeholder="Поиск товаров" required>
                     <button class="btn btn-info btn-sm" type="submit">Найти</button>
                 </form>
-
 
 <?php
 $cart = new Cart();
@@ -148,6 +147,8 @@ if($count['amount'] === null && $count['totalsum']===null){
                                                     дуги безопасности на мотоциклы, мото экипировка.
         </span>
     </div>
+
+
 
     <?php
 

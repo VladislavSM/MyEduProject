@@ -160,25 +160,28 @@ class Items
         }
         return $message;
     }
+/*
+ * The commended code was used when searching without using the index FULLTEXT  in the table "item".
+ */
 
     public function search(){
         if (!empty($_POST)){
-//            var_dump($_POST);die;
             $usersQuery = strip_tags(trim($_POST['searchQuery']));
             $usersQuery = explode(' ',$usersQuery);
 
             $usersQuery = $this->filter($usersQuery);
-//            var_dump($usersQuery);die;
-            foreach ($usersQuery as $value) {
-                $query[] = "`description` LIKE '%" . $value . "%'";
-            }
-            $queryStr =  implode(' OR ', $query);
+            $fullQueryStr = implode(' ',$usersQuery);
+            $fullQueryStr = ' MATCH (title,description) AGAINST (" '.$fullQueryStr.' ")';
+//            foreach ($usersQuery as $value) {
+//                $query[] = "`description` LIKE '%" . $value . "%'";
+//            }
+//            $queryStr =  implode(' OR ', $query);
             $dataBase = DataBase::getInstance();
             $db = $dataBase->getConnection();
             $result = $db->prepare('
                                     SELECT id, title, price, image
                                     FROM item
-                                    WHERE '.$queryStr.' ');
+                                    WHERE '.$fullQueryStr.' ');
             $result->execute();
             $result = $result->fetchAll(PDO::FETCH_ASSOC);
 
@@ -186,7 +189,6 @@ class Items
         }else{
             $result = false;
         }
-//        var_dump($result);die;
         return $result;
     }
     public function offerOfGoods(){
